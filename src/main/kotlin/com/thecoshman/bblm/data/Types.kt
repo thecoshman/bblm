@@ -20,9 +20,9 @@ data class RookiePlayer(
         val st: Int,
         val ag: Int,
         val av: Int,
-        val skills: Set<Skill>,
-        val normalSkillGroups: Set<String>,
-        val doubleSkillGroups: Set<String>
+        val skillNames: Set<String>,
+        val normalSkillGroups: String,
+        val doubleSkillGroups: String
 )
 
 data class TeamOptions(

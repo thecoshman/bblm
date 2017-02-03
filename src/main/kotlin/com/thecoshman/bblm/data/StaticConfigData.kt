@@ -26,15 +26,14 @@ class StaticConfigData {
         // This is all dummy data for now
         initSkills()
 
-        val GA = setOf("G", "A")
-        val SP = setOf("S", "P")
-
         createTeam("Dark Elf", TeamReRolls(8, 70000), setOf(
-                RookiePlayer(16, "Linemen", 70000, 6, 3, 4, 8, emptySet(), GA, SP)
+                RookiePlayer(16, "Broken Linemen", 70000, 6, 3, 4, 8, setOf("Fart"), "GAX", "SP"),
+                RookiePlayer(16, "Linemen", 70000, 6, 3, 4, 8, setOf("Dodge"), "GA", "SP")
         ))
 
         createTeam("Human", TeamReRolls(8, 50000), setOf(
-                RookiePlayer(16, "Linemen", 70000, 6, 3, 4, 8, emptySet(), GA, SP)
+                RookiePlayer(16, "Linemen", 70000, 6, 3, 4, 8, emptySet(), "GA", "SP"),
+                RookiePlayer(4, "Thrower", 70000, 6, 3, 4, 8, setOf("Throw"), "GA", "SP")
         ))
     }
 
@@ -43,7 +42,7 @@ class StaticConfigData {
                 "Block", "Run"
         ))
         skills += Pair("A", setOf(
-                "Dodge"
+                "Dodge", "Throw"
         ))
         skills += Pair("P", setOf())
         skills += Pair("S", setOf())
@@ -55,18 +54,18 @@ class StaticConfigData {
      */
     private fun createTeam(race: String, reRolls: TeamReRolls, rookiePlayers: Set<RookiePlayer>) {
         val allSkills = skills.flatMap { it.value }
-        val validRookiePlayers = mutableSetOf<RookiePlayer>()
+        var validRookiePlayers = emptySet<RookiePlayer>()
         rookiePlayers.forEach {
             val raceAndPos = "$race ${it.position}"
-            val unrecognisedSkills = it.skills.filter { allSkills.contains(it.name) }
-            unrecognisedSkills.forEach { configIssues_ += "'${it.name}' is not a recognised skill $raceAndPos" }
-            val unrecognisedNormalGroups = it.normalSkillGroups.filter { skills.keys.contains(it) }
-            unrecognisedNormalGroups.forEach { configIssues_ += "'$it'  is not a recognised 'normal' skill group $raceAndPos" }
-            val unrecognisedDoubleGroups = it.doubleSkillGroups.filter { skills.keys.contains(it) }
-            unrecognisedDoubleGroups.forEach { configIssues_ += "'$it'  is not a recognised 'double' skill group $raceAndPos" }
+            val unrecognisedSkills = it.skillNames.filterNot { allSkills.contains(it) }
+            unrecognisedSkills.forEach { configIssues_ += "'$it' is not a recognised skill for $raceAndPos" }
+            val unrecognisedNormalGroups = it.normalSkillGroups.filterNot { skills.keys.contains(it.toString()) }
+            unrecognisedNormalGroups.forEach { configIssues_ += "'$it'  is not a recognised normal skill group for $raceAndPos" }
+            val unrecognisedDoubleGroups = it.doubleSkillGroups.filterNot { skills.keys.contains(it.toString()) }
+            unrecognisedDoubleGroups.forEach { configIssues_ += "'$it'  is not a recognised double skill group for $raceAndPos" }
 
             if (unrecognisedSkills.isEmpty() && unrecognisedNormalGroups.isEmpty() && unrecognisedDoubleGroups.isEmpty())
-                validRookiePlayers + it
+                validRookiePlayers += it
         }
         teamOptions += Pair(race, TeamOptions(race, reRolls, validRookiePlayers))
     }
