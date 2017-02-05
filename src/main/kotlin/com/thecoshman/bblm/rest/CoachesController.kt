@@ -15,15 +15,15 @@ class CoachesController internal constructor() {
     private lateinit var data: CoachesData
 
     @RequestMapping("", method = arrayOf(GET))
-    fun getDivisions() = data.coaches
+    fun getCoaches() = data.coaches
 
     @RequestMapping("", method = arrayOf(POST))
-    private fun addDivision(@RequestBody newDivision: Coach) =
-            if (data.addCoach(newDivision)) data.coaches
+    private fun addCoach(@RequestBody newCoach: Coach) =
+            if (data.addCoach(newCoach)) data.coaches
             else throw DuplicateItemException()
 
     @RequestMapping("", method = arrayOf(DELETE))
-    private fun removeDivision(@RequestBody nameOfCoachToRemove: String): Set<Coach> {
+    private fun removeCoach(@RequestBody nameOfCoachToRemove: String): Set<Coach> {
         data.removeCoach(nameOfCoachToRemove)
         return data.coaches
     }
