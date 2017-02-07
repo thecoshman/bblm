@@ -14,7 +14,7 @@ class RacesController internal constructor() {
     @Autowired
     private lateinit var config: StaticConfigData
 
-    @RequestMapping("", method = arrayOf(GET))git 
+    @RequestMapping("", method = arrayOf(GET))
     fun getRaces() = config.races
 
     @RequestMapping("/{raceName}", method = arrayOf(GET))
