@@ -18,7 +18,7 @@ class RacesController internal constructor() {
     fun getRaces() = config.races
 
     @RequestMapping("/{raceName}", method = arrayOf(GET))
-    fun getRaces(@PathVariable(value="raceName") raceName: String): TeamOptions {
+    fun getRace(@PathVariable(value="raceName") raceName: String): TeamOptions {
         if(config.teamOptions.containsKey(raceName)) return config.teamOptions[raceName]!!
         throw ItemNotFoundException()
     }

@@ -2,11 +2,6 @@ package com.thecoshman.bblm.data
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Skill(
-        val name: String,
-        val skillGroup: String
-)
-
 data class TeamReRolls(
         val max: Int,
         val cost: Int
@@ -38,4 +33,18 @@ enum class PermissionLevel {
 data class Coach(
         @JsonProperty("name") val name: String,
         @JsonProperty("permission") val permission: PermissionLevel
+)
+
+data class Team(
+        @JsonProperty("race") val race: String,
+        @JsonProperty("name") val name: String,
+        @JsonProperty("reRolls") val reRolls: Int,
+        @JsonProperty("players") val players: Set<Player> = emptySet(),
+        @JsonProperty("coachName") val coachName: String? = null
+)
+
+data class Player(
+        @JsonProperty("number") val number: Int,
+        @JsonProperty("name") val name: String,
+        @JsonProperty("position") val position: String
 )
