@@ -1,19 +1,19 @@
 package com.thecoshman.bblm.webui
 
-import com.thecoshman.bblm.data.StaticConfigData
+import com.thecoshman.bblm.data.TeamData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.ModelAttribute
 
 @Controller
-class RacesWebController : WebUI() {
+class TeamsWebController : WebUI() {
     @Autowired
-    private lateinit var config: StaticConfigData
+    private lateinit var data: TeamData
 
-    @ModelAttribute("allRaces")
-    fun getRaces() = config.races
+    @ModelAttribute("allTeams")
+    fun getRaces() = data.teams
 
-    @RequestMapping("/races")
-    fun racesPage() = "races"
+    @RequestMapping("/teams")
+    fun racesPage() = "teams"
 }
