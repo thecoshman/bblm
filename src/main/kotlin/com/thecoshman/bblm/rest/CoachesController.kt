@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod.*
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/coaches")
+@RequestMapping("/rest/v1.0/coaches")
 class CoachesController internal constructor() {
     @Autowired
     private lateinit var data: CoachesData

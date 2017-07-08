@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod.GET
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/races")
+@RequestMapping("/rest/v1.0/races")
 class RacesController internal constructor() {
     @Autowired
     private lateinit var config: StaticConfigData

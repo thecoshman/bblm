@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod.DELETE
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/divisions")
+@RequestMapping("/rest/v1.0/divisions")
 class DivisionsController internal constructor() {
     @Autowired
     private lateinit var data: DivisionsData

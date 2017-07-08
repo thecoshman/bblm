@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod.GET
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/skills")
+@RequestMapping("/rest/v1.0/skills")
 class SkillsController internal constructor() {
     @Autowired
     private lateinit var config: StaticConfigData

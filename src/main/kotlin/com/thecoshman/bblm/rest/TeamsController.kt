@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RequestMethod.GET
 
 @RestController
-@RequestMapping("/teams")
+@RequestMapping("/rest/v1.0/teams")
 class TeamsController internal constructor() {
     @Autowired
     private lateinit var data: TeamData

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod.GET
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/config_errors")
+@RequestMapping("/rest/v1.0/config_errors")
 class ConfigErrorsController internal constructor() {
     @Autowired
     private lateinit var config: StaticConfigData
